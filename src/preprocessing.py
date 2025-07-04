@@ -51,9 +51,30 @@ def prepare_data(conversations):
 def prepare_predator_texts(conversations, predator_ids):
     texts = []
     labels = []
+    ids = []
+    predador = []
     for conv in conversations:
         predator_msgs = [clean_text(text) for author, text in conv['messages'] if author in predator_ids]
         if predator_msgs:
             texts.append(' '.join(predator_msgs))
             labels.append(conv['label'])
-    return texts, labels
+            ids.append(conv['id'])
+            predador.append(1)
+
+    return texts, labels, predador
+
+def prepare_non_predator_texts(conversations, predator_ids):
+    texts = []
+    labels = []
+    ids = []
+    predador = []
+
+    for conv in conversations:
+        predator_msgs = [clean_text(text) for author, text in conv['messages'] if author not in predator_ids]
+        if predator_msgs:
+            texts.append(' '.join(predator_msgs))
+            labels.append(conv['label'])
+            ids.append(conv['id'])
+            predador.append(0)
+            
+    return texts, labels, predador

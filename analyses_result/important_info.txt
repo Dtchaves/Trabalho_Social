@@ -1,0 +1,5 @@
+Total de conversas (treino + teste): 222015
+Total de IDs de predadores (treino + teste): 394
+Total de segmentos de texto de predadores: 5772
+Total de segmentos de texto de não-predadores: 219236
+Total de segmentos de texto combinados para análise: 225008
