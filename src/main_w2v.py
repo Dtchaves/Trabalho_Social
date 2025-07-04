@@ -47,7 +47,7 @@ X_w2v_test = embed_texts(tokenized_texts_test, w2v_model_test)
 
 
 logging.info("Treinando classificadores...")
-train_classifiers(X_w2v, labels, X_w2v_test, labels_test, ids_test)
+#train_classifiers(X_w2v, labels, X_w2v_test, labels_test, ids_test)
 
 
 logging.info("Caracteristicas do espaço latente da base de treino...")

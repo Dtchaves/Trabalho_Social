@@ -194,21 +194,21 @@ def train_classifiers(X_train, y_train, X_test, y_test, ids_test):
 def latent_space_analysis(X, y, texts=None, ids=None, n_clusters=2, dir="figures"):
     os.makedirs(dir, exist_ok=True)
 
-    # === KMeans Clustering ===
-    logging.info("=== Clustering com KMeans ===")
-    kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-    clusters = kmeans.fit_predict(X)
+    # # === KMeans Clustering ===
+    # logging.info("=== Clustering com KMeans ===")
+    # kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+    # clusters = kmeans.fit_predict(X)
 
-    sil_score = silhouette_score(X, clusters)
-    logging.info(f"Silhouette Score: {sil_score:.3f}")
-    logging.info(f"Tamanho dos clusters: {Counter(clusters)}")
+    # sil_score = silhouette_score(X, clusters)
+    # logging.info(f"Silhouette Score: {sil_score:.3f}")
+    # logging.info(f"Tamanho dos clusters: {Counter(clusters)}")
 
-    # === External Metrics ===
-    logging.info("=== Métricas externas ===")
-    logging.info(f"Adjusted Rand Index (ARI): {adjusted_rand_score(y, clusters):.4f}")
-    logging.info(f"Adjusted Mutual Info (AMI): {adjusted_mutual_info_score(y, clusters):.4f}")
-    logging.info(f"Homogeneity: {homogeneity_score(y, clusters):.4f}")
-    logging.info(f"Completeness: {completeness_score(y, clusters):.4f}")
+    # # === External Metrics ===
+    # logging.info("=== Métricas externas ===")
+    # logging.info(f"Adjusted Rand Index (ARI): {adjusted_rand_score(y, clusters):.4f}")
+    # logging.info(f"Adjusted Mutual Info (AMI): {adjusted_mutual_info_score(y, clusters):.4f}")
+    # logging.info(f"Homogeneity: {homogeneity_score(y, clusters):.4f}")
+    # logging.info(f"Completeness: {completeness_score(y, clusters):.4f}")
 
     # === Dimensionality Reductions ===
     pca = PCA(n_components=2)
@@ -222,6 +222,7 @@ def latent_space_analysis(X, y, texts=None, ids=None, n_clusters=2, dir="figures
 
     # === Função auxiliar para visualizações com legenda binária ===
     def plot_binary(X_2d, labels, title, filename, label_names=['Não predador', 'Predador']):
+        labels = np.array(labels).astype(int)
         plt.figure(figsize=(8, 6))
         for value, color, name in zip([0, 1], ['skyblue', 'red'], label_names):
             idx = (labels == value)
@@ -234,10 +235,10 @@ def latent_space_analysis(X, y, texts=None, ids=None, n_clusters=2, dir="figures
         plt.savefig(os.path.join(dir, filename))
         plt.close()
 
-    # === Visualização dos clusters preditos ===
-    plot_binary(X_pca, clusters, f'Clusters via PCA (K={n_clusters})', "clusters_pca.png", [f"Cluster 0", f"Cluster 1"])
-    plot_binary(X_umap, clusters, f'Clusters via UMAP (K={n_clusters})', "clusters_umap.png", [f"Cluster 0", f"Cluster 1"])
-    plot_binary(X_tsne, clusters, f'Clusters via t-SNE (K={n_clusters})', "clusters_tsne.png", [f"Cluster 0", f"Cluster 1"])
+    # # === Visualização dos clusters preditos ===
+    # plot_binary(X_pca, clusters, f'Clusters via PCA (K={n_clusters})', "clusters_pca.png", [f"Cluster 0", f"Cluster 1"])
+    # plot_binary(X_umap, clusters, f'Clusters via UMAP (K={n_clusters})', "clusters_umap.png", [f"Cluster 0", f"Cluster 1"])
+    # plot_binary(X_tsne, clusters, f'Clusters via t-SNE (K={n_clusters})', "clusters_tsne.png", [f"Cluster 0", f"Cluster 1"])
 
     # === Visualização das labels reais ===
     plot_binary(X_pca, y, 'Distribuição das Labels Reais (PCA)', "true_labels_pca.png")
@@ -246,7 +247,7 @@ def latent_space_analysis(X, y, texts=None, ids=None, n_clusters=2, dir="figures
 
     # === Estatísticas por cluster e por label ===
     df = pd.DataFrame(X)
-    df['cluster'] = clusters
+    #df['cluster'] = clusters
     df['label'] = y
 
     logging.info("=== Estatísticas por Cluster ===")
@@ -256,18 +257,18 @@ def latent_space_analysis(X, y, texts=None, ids=None, n_clusters=2, dir="figures
     logging.info(df.groupby("label").describe())
 
     # === IDs das conversas corretamente ou erroneamente classificadas (assumindo label 1 = predador) ===
-    correct_predators = []
-    wrong_predators = []
-    if ids is not None:
-        for i in range(len(y)):
-            if y[i] == 1:
-                if clusters[i] == 1:
-                    correct_predators.append(ids[i])
-                else:
-                    wrong_predators.append(ids[i])
+    # correct_predators = []
+    # wrong_predators = []
+    # if ids is not None:
+    #     for i in range(len(y)):
+    #         if y[i] == 1:
+    #             if clusters[i] == 1:
+    #                 correct_predators.append(ids[i])
+    #             else:
+    #                 wrong_predators.append(ids[i])
 
-        logging.info(f"Predadores classificados corretamente (label=1, cluster=1): {correct_predators}")
-        logging.info(f"Predadores classificados erroneamente (label=1, cluster≠1): {wrong_predators}")
+    #     logging.info(f"Predadores classificados corretamente (label=1, cluster=1): {correct_predators}")
+    #     logging.info(f"Predadores classificados erroneamente (label=1, cluster≠1): {wrong_predators}")
         
       # === Análise de Componentes: Direção que mais distingue as classes ===
     #logging.info("=== Análise de Componentes ===")

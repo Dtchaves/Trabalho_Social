@@ -64,7 +64,7 @@ X_tfidf_test = tfidf.fit_transform(texts_test)
 
 
 logging.info("Treinando classificadores...")
-train_classifiers(X_tfidf, labels, X_tfidf_test, labels_test, ids_test)
+#train_classifiers(X_tfidf, labels, X_tfidf_test, labels_test, ids_test)
 
 
 logging.info("Caracteristicas do espaço latente da base de treino...")

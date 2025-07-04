@@ -54,26 +54,26 @@ X_bert_test = bert.get_embeddings(texts_test)
 #pca_bert = PCA(n_components=30)
 #X_bert_pca = pca_bert.fit_transform(X_bert)
 logging.info("Treinando classificadores...")
-train_classifiers(X_bert, labels, X_bert_test, labels_test, ids_test)
+#train_classifiers(X_bert, labels, X_bert_test, labels_test, ids_test)
 
 #indices_predadores = [i for i, label in enumerate(labels) if label == 1]
 #X_pred_bert = X_bert[indices_predadores]
 #texts_pred_full = [texts[i] for i in indices_predadores]
 logging.info("Caracteristicas do espaço latente da base de treino...")
-latent_space_analysis(X=X_bert,y=labels, texts=texts,ids=ids, n_clusters=2, dir="../results/BERT/latent_space/training")
+latent_space_analysis(X=X_bert,y=labels, texts=texts,ids=ids, n_clusters=2, dir="../results/BERT/latent_space")
 
 logging.info("Caracteristicas do espaço latente da base de teste...")
 latent_space_analysis(X=X_bert_test,y=labels_test, texts=texts_test,ids=ids_test, n_clusters=2, dir="../results/BERT/latent_space/test")
 
 logging.info("Caracteristicas do espaço latente da base completa (treino + teste)...")
-latent_space_analysis(
-    X=np.concatenate([X_bert, X_bert_test]),
-    y=np.concatenate([labels, labels_test]),
-    texts=texts + texts_test,
-    ids=ids + ids_test,
-    n_clusters=2,
-    dir="../results/BERT/latent_space/both"
-)
+#latent_space_analysis(
+#    X=np.concatenate([X_bert, X_bert_test]),
+#    y=np.concatenate([labels, labels_test]),
+#    texts=texts + texts_test,
+#    ids=ids + ids_test,
+#    n_clusters=2,
+#    dir="../results/BERT/latent_space/both"
+#)
 
 # === BERT Embeddings: Só mensagens dos predadores ===
 #logging.info("Extraindo embeddings BERT só dos predadores...")

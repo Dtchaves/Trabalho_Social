@@ -53,17 +53,17 @@ logging.info("Treinando classificadores...")
 
 
 logging.info("Caracteristicas do espaço latente da base de treino...")
-#latent_space_analysis(X=X_emb,y=labels, texts=texts,ids=ids, n_clusters=2, dir="../results/LM/latent_space/training")
+latent_space_analysis(X=X_emb,y=labels, texts=texts,ids=ids, n_clusters=2, dir="../results/LM/latent_space/training")
 
 logging.info("Caracteristicas do espaço latente da base de teste...")
-#latent_space_analysis(X=X_emb_test,y=labels_test, texts=texts_test,ids=ids_test, n_clusters=2, dir="../results/LM/latent_space/test")
+latent_space_analysis(X=X_emb_test,y=labels_test, texts=texts_test,ids=ids_test, n_clusters=2, dir="../results/LM/latent_space/test")
 
 logging.info("Caracteristicas do espaço latente da base completa (treino + teste)...")
-latent_space_analysis(
-    X=np.concatenate([X_emb, X_emb_test]),
-    y=np.concatenate([labels, labels_test]),
-    texts=texts + texts_test,
-    ids=ids + ids_test,
-    n_clusters=2,
-    dir="../results/BERT/latent_space/both"
-)
+# latent_space_analysis(
+#     X=np.concatenate([X_emb, X_emb_test]),
+#     y=np.concatenate([labels, labels_test]),
+#     texts=texts + texts_test,
+#     ids=ids + ids_test,
+#     n_clusters=2,
+#     dir="../results/BERT/latent_space/both"
+# )

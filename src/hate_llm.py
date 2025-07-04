@@ -80,7 +80,6 @@ models_dict = {
     "KoalaAI-Moderation": "KoalaAI/Text-Moderation",
     "DeHateBERT": "Hate-speech-CNERG/dehatebert-mono-english",
     "Toxic-BERT": "unitary/toxic-bert",
-    "UNHCR": "unhcr/hatespeech-detection"
 }
 
 # --- Função Principal de Execução e Plotagem ---
