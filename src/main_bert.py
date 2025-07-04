@@ -60,7 +60,7 @@ logging.info("Treinando classificadores...")
 #X_pred_bert = X_bert[indices_predadores]
 #texts_pred_full = [texts[i] for i in indices_predadores]
 logging.info("Caracteristicas do espaço latente da base de treino...")
-latent_space_analysis(X=X_bert,y=labels, texts=texts,ids=ids, n_clusters=2, dir="../results/BERT/latent_space")
+latent_space_analysis(X=X_bert,y=labels, texts=texts,ids=ids, n_clusters=2, dir="../results/BERT/latent_space/training")
 
 logging.info("Caracteristicas do espaço latente da base de teste...")
 latent_space_analysis(X=X_bert_test,y=labels_test, texts=texts_test,ids=ids_test, n_clusters=2, dir="../results/BERT/latent_space/test")

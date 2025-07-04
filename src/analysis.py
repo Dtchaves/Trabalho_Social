@@ -250,11 +250,11 @@ def latent_space_analysis(X, y, texts=None, ids=None, n_clusters=2, dir="figures
     #df['cluster'] = clusters
     df['label'] = y
 
-    logging.info("=== Estatísticas por Cluster ===")
-    logging.info(df.groupby("cluster").describe())
+    # logging.info("=== Estatísticas por Cluster ===")
+    # logging.info(df.groupby("cluster").describe())
 
-    logging.info("=== Estatísticas por Label ===")
-    logging.info(df.groupby("label").describe())
+    # logging.info("=== Estatísticas por Label ===")
+    # logging.info(df.groupby("label").describe())
 
     # === IDs das conversas corretamente ou erroneamente classificadas (assumindo label 1 = predador) ===
     # correct_predators = []
