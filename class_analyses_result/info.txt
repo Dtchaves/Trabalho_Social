@@ -1,0 +1,1 @@
+Os classificados errados sao os classificados errados por todos os classificadores do bert

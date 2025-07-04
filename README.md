@@ -6,7 +6,7 @@ Este projeto avalia modelos de linguagem pré-treinados e classificadores superv
 
 ## 📁 Estrutura
 
-### `analyses_result/`
+### `analyses_result/ e class_analyses_result`
 
 Contém os resultados dos seguintes **modelos de linguagem pré-treinados**:
 
@@ -16,7 +16,7 @@ Contém os resultados dos seguintes **modelos de linguagem pré-treinados**:
 - `dehatebert-mono-english`: especializado em detectar discurso de ódio.
 - `toxic-bert`: modelo para detectar toxicidade textual.
 
-Aplicados diretamente nos dados rotulados como predador ou não predador.
+Aplicados diretamente nos dados rotulados como predador ou não predador na pasta `analyses_result/` e aplicado nos dados de predadores totais comparados com os classificados de forma errada por todos os classificadores usando BERT como método de criar os vetores latentes.
 
 ---
 
@@ -66,5 +66,6 @@ As projeções são analisadas tanto com as **labels reais** (predador/não pred
 ## 📝 Observação
 
 - `analyses_result/`: aplicação direta de modelos de moderação de texto.
+- `class_analyses_result/`: nos dados de predadores totais comparados com os classificados de forma errada por todos os classificadores usando BERT como método de criar os vetores latentes.
 - `results/`: experimentos completos com classificadores treinados, embeddings, clusterização e visualização do espaço vetorial.
 
