@@ -1,0 +1,21 @@
+# Cache de pacotes e compilações Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Diretórios de cache e lock
+.locks/
+hf_cache/
+
+# Modelos e dados
+models--bert-base-uncased/
+data/
+
+# Arquivos ocultos do sistema
+.DS_Store
+Thumbs.db
+
+# Ambientes virtuais (opcional)
+venv/
+.venv/
+ENV/
