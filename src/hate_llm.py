@@ -219,6 +219,31 @@ def run_and_plot_model(selected_model_alias: str):
     plt.savefig(os.path.join(PLOTS_SAVE_DIR, f'{selected_model_alias}_label_score_boxplot.png'))
     plt.close()
 
+    plt.figure(figsize=(14, 7))
+
+
+    logging.info("Terceiro Gráfico")
+    # Calcular proporção manualmente
+    proportions = (
+        df_results
+        .groupby(['text_type', 'label'])
+        .size()
+        .groupby(level=0)
+        .transform(lambda x: x / x.sum())
+        .reset_index(name='proportion')
+    )
+
+    sns.barplot(data=proportions, x='label', y='proportion', hue='text_type', palette='viridis')
+
+    plt.title(f'Proporção das Classificações para {selected_model_alias} por Tipo de Texto', fontsize=16)
+    plt.xlabel('Classificação')
+    plt.ylabel('Proporção')
+    plt.xticks(rotation=45, ha='right')
+    plt.legend(title='Tipo de Texto')
+    plt.tight_layout()
+    plt.savefig(os.path.join(PLOTS_SAVE_DIR, f'{selected_model_alias}_label_proportion.png'))
+    plt.close()
+
     # 4. Plot Específico para Modelos Multi-Label (Ex: Toxic-BERT, KoalaAI-Moderation)
     # Identifica as colunas de score específicas para o modelo atual, excluindo 'score' geral, 'conversation_id', etc.
     score_columns = [col for col in df_results.columns if col not in ['conversation_id', 'text_type', 'label', 'score']]
